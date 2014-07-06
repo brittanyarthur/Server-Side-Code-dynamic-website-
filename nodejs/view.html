@@ -1,0 +1,54 @@
+//view.html
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<h1>Gratitude Journal</h1>
+<p>Complete the sentence!</p>
+
+<form  name="input" action="/nodejs" method="post"> 
+</br>
+<select id="myList" name="starter">
+<script type="text/javascript" href="/m10ser.js">
+     var startText = new Array();
+     startText[2] =  "Today was fun because </option>";
+     startText[3] =  "I appreciate </option>";
+     startText[4] =  "I am grateful for </option>";
+     startText[5] =  "Before I die, </option>";
+     startText[6] =  "My most memorable moment today was when </option>";
+     startText[7] =  "I am looking forward to </option>";
+     var chosen = Math.floor((Math.random()*7)+2);
+     for(var i = 2; i < 8; i++){
+         if(chosen == i){
+         var htmlString = "<option value = \""+i+"\" selected=\"\">" + startText[i] + htmlString
+         }else{
+         var htmlString = "<option value = \""+i+"\"> " + startText[i] + htmlString
+        }
+         
+      }
+      document.getElementById('myList').innerHTML = htmlString;
+</script>
+
+</br>
+Entry:  
+</br>
+
+<textarea type="text" name="entry" rows="6" cols="80"/></textarea> 
+  <!-- <input type="text" name="entry"> -->
+</br>
+<input type="submit" value="Submit">
+    <script type="text/javascript"
+       src="http://www.google.com/recaptcha/api/challenge?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4">
+    </script>
+    <noscript>
+       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4"
+           height="300" width="500" frameborder="0"></iframe><br>
+       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+       </textarea>
+       <input type="hidden" name="recaptcha_response_field"
+           value="manual_challenge">
+    </noscript> 
+</form> 
+<!--</html>-->
