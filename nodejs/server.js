@@ -51,10 +51,8 @@ function processPost(request, response, callback) {
       response.end();
    }
 }
-// From http://stackoverflow.com/questions/4295782/how-do-you-extract-post-data-in-node-js
-// --------------------------------------------------
 
-// --------------------------------------------------
+// From http://stackoverflow.com/questions/4295782/how-do-you-extract-post-data-in-node-js
 function strip_tags(input, allowed) {
   allowed = (((allowed || '') + '')
     .toLowerCase()
@@ -67,6 +65,7 @@ function strip_tags(input, allowed) {
       return allowed.indexOf('<' + $1.toLowerCase() + '>') > -1 ? $0 : '';
     });
 }
+
 // http://phpjs.org/functions/strip_tags/
 // --------------------------------------------------
 
@@ -177,21 +176,21 @@ function printPage(request, response, client, cookie, errors, starter_id) {
 
 
 	response.write(
-'<!DOCTYPE html>\n' +
-'<html>\n' +
-'<head>\n' +
-'<title>\n' +
-'Gratitude Journal' +
-'</title>\n' +
-'</head>\n' +
-'\n' +
-'<body>\n' +
-'<h1>Gratitude Journal</h1>\n' +
-'<p>Complete the sentence!</p>\n' +
-'\n' +
-'<form  name="input" action="/nodejs" method="post"> \n' +
-'</br>\n' +
-'<select id="myList" name="starter">\n');
+            '<!DOCTYPE html>\n' +
+            '<html>\n' +
+            '<head>\n' +
+            '<title>\n' +
+            'Gratitude Journal' +
+            '</title>\n' +
+            '</head>\n' +
+            '\n' +
+            '<body>\n' +
+            '<h1>Gratitude Journal</h1>\n' +
+            '<p>Complete the sentence!</p>\n' +
+            '\n' +
+            '<form  name="input" action="/nodejs" method="post"> \n' +
+            '</br>\n' +
+            '<select id="myList" name="starter">\n');
 
 	client.query("SELECT id, starter FROM starters ORDER BY id", function (err, result) {
 	   console.log("SELECT id, starter FROM starters ORDER BY id");
@@ -207,30 +206,30 @@ function printPage(request, response, client, cookie, errors, starter_id) {
 		  }
 	   }
 	   response.write('</select>\n' +
-'</br>\n' +
-'Entry:  \n' +
-'</br>\n' +
-'<textarea type="text" name="entry" rows="6" cols="80"/>');
-				if (errors != "\n") {
-					response.write(response.post.entry);
-				}
-response.write('</textarea>\n' +
-'</br>\n' +
-'    <script type="text/javascript"\n' +
-'       src="http://www.google.com/recaptcha/api/challenge?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4">\n' +
-'    </script>\n' +
-'    <noscript>\n' +
-'       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4"\n' +
-'           height="300" width="500" frameborder="0"></iframe><br>\n' +
-'       <textarea name="recaptcha_challenge_field" rows="3" cols="40">\n' +
-'       </textarea>\n' +
-'       <input type="hidden" name="recaptcha_response_field"\n' +
-'           value="manual_challenge">\n' +
-'    </noscript>\n' +
-'<input type="submit" value="Submit">\n' +
-'</form>\n' +
-errors +
-'<br />\n');
+                          '</br>\n' +
+                          'Entry:  \n' +
+                          '</br>\n' +
+                          '<textarea type="text" name="entry" rows="6" cols="80"/>');
+	if (errors != "\n") {
+		response.write(response.post.entry);
+	}
+        response.write('</textarea>\n' +
+        '</br>\n' +
+        '    <script type="text/javascript"\n' +
+        '       src="http://www.google.com/recaptcha/api/challenge?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4">\n' +
+        '    </script>\n' +
+        '    <noscript>\n' +
+        '       <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LcBCO8SAAAAAEkLHW7EZzRX75HlnZJf75WvWWY4"\n' +
+        '           height="300" width="500" frameborder="0"></iframe><br>\n' +
+        '       <textarea name="recaptcha_challenge_field" rows="3" cols="40">\n' +
+        '       </textarea>\n' +
+        '       <input type="hidden" name="recaptcha_response_field"\n' +
+        '           value="manual_challenge">\n' +
+        '    </noscript>\n' +
+        '<input type="submit" value="Submit">\n' +
+        '</form>\n' +
+        errors +
+        '<br />\n');
 		var search = 'SELECT A.starter, B.entry, B.user_id, B.id FROM Starters as A, Entries as B WHERE A.id = B.starter_id ORDER BY B.id';
 		client.query(search, function (err, result) {
 		   console.log(search);
